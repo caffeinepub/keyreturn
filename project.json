@@ -1,0 +1,20 @@
+{
+  "overview": "A Lost Key Return System where owners create labeled keys with unique QR codes. When someone finds a key, they scan the QR code and submit their contact info. Owners see return requests in their dashboard and can manage key statuses.",
+  "features": [
+    "Create keys with labels and unique QR codes",
+    "Public finder form — no login required",
+    "Owner dashboard with return request inbox",
+    "Mark keys as returned",
+    "QR code generation via platform extension",
+    "Internet Identity login for owners"
+  ],
+  "category": "productivity",
+  "tags": [
+    "qr-code",
+    "lost-and-found",
+    "key-management",
+    "productivity",
+    "internet-identity"
+  ],
+  "last_updated": "2026-04-08T18:32:18.318Z"
+}

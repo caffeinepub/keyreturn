@@ -1,0 +1,48 @@
+// Version: 1.0.0
+type Data__791452850<K, V> =
+  {var count : Nat__490723111; kvs : [var ?(K, V)]};
+type Internal__8484328<K, V> =
+  {children : [var ?Node__46230540<K, V>]; data : Data__791452850<K, V>};
+type KeyId__558429330 = Nat;
+type KeyStatus__429797144 = {#active; #returned};
+type Key__91509980 =
+  {
+    createdAt : Timestamp__301639476;
+    description : ?Text;
+    id : KeyId__558429330;
+    owner : Principal;
+    status : KeyStatus__429797144;
+    tag : Text;
+    updatedAt : Timestamp__301639476
+  };
+type Leaf__809889148<K, V> = {data : Data__791452850<K, V>};
+type Nat__490723111 = Nat__920180692;
+type Nat__920180692 = Nat;
+type Node__46230540<K, V> =
+  {#internal : Internal__8484328<K, V>; #leaf : Leaf__809889148<K, V>};
+type RequestId__173743850 = Nat;
+type ReturnRequest__663827148 =
+  {
+    createdAt : Timestamp__301639476;
+    dismissed : Bool;
+    finderContact : Text;
+    finderName : Text;
+    id : RequestId__173743850;
+    keyId : KeyId__558429330
+  };
+type Timestamp__301639476 = Int;
+actor {
+  stable keys :
+    {
+      var root : Node__46230540<KeyId__558429330, Key__91509980>;
+      var size : Nat__490723111
+    };
+  stable nextKeyId : {var value : Nat};
+  stable nextRequestId : {var value : Nat};
+  stable requests :
+    {
+      var root :
+        Node__46230540<RequestId__173743850, ReturnRequest__663827148>;
+      var size : Nat__490723111
+    }
+};

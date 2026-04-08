@@ -1,0 +1,39 @@
+type Timestamp = int;
+type ReturnRequest = 
+ record {
+   createdAt: Timestamp;
+   dismissed: bool;
+   finderContact: text;
+   finderName: text;
+   id: RequestId;
+   keyId: KeyId;
+ };
+type RequestId = nat;
+type KeyStatus = 
+ variant {
+   active;
+   returned;
+ };
+type KeyId = nat;
+type Key = 
+ record {
+   createdAt: Timestamp;
+   description: opt text;
+   id: KeyId;
+   owner: principal;
+   status: KeyStatus;
+   tag: text;
+   updatedAt: Timestamp;
+ };
+service : {
+  createKey: (tag: text, description: opt text) -> (KeyId);
+  deleteKey: (keyId: KeyId) -> (bool);
+  dismissReturnRequest: (requestId: RequestId) -> (bool);
+  getKey: (keyId: KeyId) -> (opt Key) query;
+  getReturnRequestCount: (keyId: KeyId) -> (nat);
+  listKeys: () -> (vec Key) query;
+  listReturnRequests: (keyId: KeyId) -> (vec ReturnRequest);
+  markKeyReturned: (keyId: KeyId) -> (bool);
+  submitReturnRequest: (keyId: KeyId, finderName: text, finderContact:
+   text) -> (opt RequestId);
+}
